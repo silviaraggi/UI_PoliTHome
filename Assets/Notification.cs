@@ -32,6 +32,7 @@ public class Notification : MonoBehaviour
     private string today;
     private string currentDate = DateTime.Now.ToString("dd-MM-yyyy");
     DateTime now = DateTime.Now;
+    private DateTime old= new DateTime(2000, 1, 1);
     private bool week = false;
 
 
@@ -46,7 +47,31 @@ public class Notification : MonoBehaviour
             Surname = Lines[1];
 
             
-            foreach (string files in Directory.GetFiles(@"Assets/TextFile/" + Name + " " + Surname, ".txt"))
+            if(!Directory.Exists("Assets/TextFile/"+ Name + " " + Surname))
+            {
+                old = File.GetCreationTime(@"Assets/TextFile/" + Username + ".txt");               
+                if ((now-old).Days >= 7)
+                {
+                    type_notifica = 2;
+                    week = true;
+                }
+                Debug.Log(type_notifica);
+            } else
+            {
+                foreach (string files in Directory.GetFiles("Assets/TextFile/" + Name + " " + Surname))
+                {
+                    if (File.GetCreationTime(files) > old)
+                        old = File.GetCreationTime(files);
+                }
+                Debug.Log(old);
+                if ((now - old).Days >= 7)
+                {
+                    type_notifica = 2;
+                    week = true;
+                }
+                Debug.Log(type_notifica);
+            }
+            /*foreach (string files in Directory.GetFiles(@"Assets/TextFile/" + Name + " " + Surname, ".txt"))
             {
                 
                 DateTime contents = File.GetCreationTime(files);
@@ -61,7 +86,7 @@ public class Notification : MonoBehaviour
                     week = true;
                 }
 
-            }
+            }*/
 
             if (currentDate != today && week == false)
             {
