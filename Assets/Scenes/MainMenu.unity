@@ -16124,6 +16124,7 @@ MonoBehaviour:
   Login_canvas: {fileID: 2093184408}
   Logo: {fileID: 705636016}
   Lines: []
+  access: 0
   displayName: {fileID: 1216722880}
   displayNameDoc: {fileID: 346640975}
 --- !u!114 &944013420
@@ -16199,6 +16200,8 @@ MonoBehaviour:
   blue_cloud: {fileID: 615359097}
   survey_button: {fileID: 85177323}
   panel: {fileID: 1865467682}
+  username: {fileID: 1525397187}
+  login: {fileID: 944013419}
   notifica_verde: {fileID: 1454348974}
   notifica_blue: {fileID: 615359101}
 --- !u!1 &945969566
@@ -18011,6 +18014,17 @@ MonoBehaviour:
       - m_Target: {fileID: 705636016}
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 944013419}
+        m_MethodName: logout
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -25452,6 +25466,7 @@ GameObject:
   - component: {fileID: 1561632915}
   - component: {fileID: 1561632914}
   - component: {fileID: 1561632913}
+  - component: {fileID: 1561632916}
   m_Layer: 5
   m_Name: Save and Send
   m_TagString: Untagged
@@ -25517,7 +25532,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1561632914}
   m_OnClick:
     m_PersistentCalls:
@@ -25536,6 +25551,17 @@ MonoBehaviour:
       - m_Target: {fileID: 2005798261}
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1561632916}
+        m_MethodName: Save_and_send
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -25581,6 +25607,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1561632911}
   m_CullTransparentMesh: 0
+--- !u!114 &1561632916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1561632911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d111fab640c6447a953ca76628450a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cappotto: {fileID: 453052441}
+  dormire: {fileID: 631182303}
+  porta_dietro: {fileID: 1378885307}
+  lavarsi: {fileID: 1165186038}
+  pettinarsi: {fileID: 799602444}
+  lanciare: {fileID: 68380418}
+  raggiungere_scaffale: {fileID: 1709740008}
+  sollevare: {fileID: 1836484690}
+  sport: {fileID: 1836484690}
+  lavorare: {fileID: 525032738}
+  username: {fileID: 1525397187}
+  send_button: {fileID: 1561632911}
 --- !u!1 &1575244784
 GameObject:
   m_ObjectHideFlags: 0
@@ -30671,7 +30721,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1837044818
 RectTransform:
   m_ObjectHideFlags: 0
@@ -33407,7 +33457,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2005798262
 RectTransform:
   m_ObjectHideFlags: 0

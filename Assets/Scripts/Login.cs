@@ -25,6 +25,7 @@ public class Login : MonoBehaviour
     private string Password;
     public String[] Lines;
     private string DecryptedPass;
+    public bool access=false;
     
 
     public GameObject displayName;
@@ -90,11 +91,9 @@ public class Login : MonoBehaviour
         }
         if (UN == true && PW == true)
         {
-            username.GetComponent<InputField>().text = "";
+            
             password.GetComponent<InputField>().text = "";
-            name.GetComponent<InputField>().text = "";
-            surname.GetComponent<InputField>().text = "";
-            docName.GetComponent<InputField>().text = "";
+           
 
             print("Login Successful");
 
@@ -108,6 +107,7 @@ public class Login : MonoBehaviour
 
             displayName.GetComponent<Text>().text = "Welcome " + Name + " " + Surname;
             displayNameDoc.GetComponent<Text>().text = "DOC. " + DocName;
+            access = true;
         }
     }
 
@@ -143,6 +143,9 @@ public class Login : MonoBehaviour
 
 
     }
-
+    public void logout()
+    {
+        access = false;
+    }
 
 }
