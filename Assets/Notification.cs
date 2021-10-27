@@ -55,7 +55,7 @@ public class Notification : MonoBehaviour
                     type_notifica = 2;
                     week = true;
                 }
-                Debug.Log(type_notifica);
+                //Debug.Log(type_notifica);
             } else
             {
                 foreach (string files in Directory.GetFiles("Assets/TextFile/" + Name + " " + Surname))
@@ -63,13 +63,13 @@ public class Notification : MonoBehaviour
                     if (File.GetCreationTime(files) > old)
                         old = File.GetCreationTime(files);
                 }
-                Debug.Log(old);
+                //Debug.Log(old);
                 if ((now - old).Days >= 7)
                 {
                     type_notifica = 2;
                     week = true;
                 }
-                Debug.Log(type_notifica);
+                //Debug.Log(type_notifica);
             }
             /*foreach (string files in Directory.GetFiles(@"Assets/TextFile/" + Name + " " + Surname, ".txt"))
             {
