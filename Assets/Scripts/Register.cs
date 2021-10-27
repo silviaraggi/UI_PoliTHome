@@ -14,6 +14,7 @@ public class Register : MonoBehaviour
     public GameObject register_button;
     public GameObject Register_canvas;
     public GameObject Login_canvas;
+    public Dropdown genere;
 
     public GameObject name;
     public GameObject surname;
@@ -21,7 +22,7 @@ public class Register : MonoBehaviour
     public GameObject name_doctor;
     public GameObject email_doctor;
 
-    
+    private int index_genere;
     private string Username;
     private string Email;
     private string Password;
@@ -189,6 +190,8 @@ public class Register : MonoBehaviour
                 Debug.LogWarning("Confirm Password Field Empty");
             }
 
+        
+
 
             if (UN == true && EM == true && PW == true && CPW == true && DC==true && DCEM==true && NM==true && SN==true)
             {
@@ -229,6 +232,17 @@ public class Register : MonoBehaviour
         void Update()
         {
         register_button.GetComponent<Button>().interactable = false;
+
+        if (genere.options[genere.value].text == "Maschio")
+        {
+            index_genere = 0;
+            print(index_genere);
+        }
+        else
+        {
+            index_genere = 1;
+            print(index_genere);
+        }
 
         if (Input.GetKeyDown(KeyCode.Tab))
             {
