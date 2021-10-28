@@ -14,7 +14,8 @@ public class Notification : MonoBehaviour
     public GameObject green_notifica;
     public GameObject green_cloud;
     public GameObject blue_cloud;
-    public GameObject survey_button;
+    public GameObject survey_button1;
+    public GameObject survey_button2;
     public GameObject panel;
     public GameObject username;
     public Login login;
@@ -34,11 +35,12 @@ public class Notification : MonoBehaviour
     DateTime now = DateTime.Now;
     private DateTime old= new DateTime(2000, 1, 1);
     private bool week = false;
+    private bool firstLogin = false;
 
 
     void Update()
     {
-        if (login.access is true)
+        if (login.access is true && firstLogin==false)
         {
             
             Username = username.GetComponent<InputField>().text;
@@ -96,6 +98,8 @@ public class Notification : MonoBehaviour
                 today = currentDate;
 
             }
+            OpenNotifica();
+            firstLogin = true;
         }
         
 
@@ -111,7 +115,9 @@ public class Notification : MonoBehaviour
         {
             blue_cloud.SetActive(true);
             notifica_blue.SetBool("isOpen", true);
-         
+            survey_button1.GetComponent<Button>().interactable = true;
+            survey_button2.GetComponent<Button>().interactable = true;
+
         }
     }
     public void CloseNotifica()

@@ -26,6 +26,7 @@ public class Login : MonoBehaviour
     public String[] Lines;
     private string DecryptedPass;
     public bool access=false;
+    public Notification notification;
     
 
     public GameObject displayName;
