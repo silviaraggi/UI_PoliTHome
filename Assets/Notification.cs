@@ -53,6 +53,7 @@ public class Notification : MonoBehaviour
                 if ((now-old).Days >= 7)
                 {
                     type_notifica = 2;
+                    panel.SetActive(false);
                     week = true;
                 }
                 //Debug.Log(type_notifica);
@@ -67,6 +68,7 @@ public class Notification : MonoBehaviour
                 if ((now - old).Days >= 7)
                 {
                     type_notifica = 2;
+                    panel.SetActive(false);
                     week = true;
                 }
                 //Debug.Log(type_notifica);
@@ -118,7 +120,7 @@ public class Notification : MonoBehaviour
         {
             notifica_verde.SetBool("isOpen", false);
             green_notifica.SetActive(false);
-            green_cloud.SetActive(false);
+            /*green_cloud.SetActive(false);*/
             type_notifica = 0;
 
         }
@@ -126,7 +128,7 @@ public class Notification : MonoBehaviour
         {
             notifica_blue.SetBool("isOpen", false);
             green_notifica.SetActive(false);
-            blue_cloud.SetActive(false);
+            /*blue_cloud.SetActive(false);*/
             type_notifica = 0;
             week = false;
         }

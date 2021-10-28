@@ -1,13 +1,16 @@
 ﻿<Properties StartupConfiguration="{561F7ECE-EC08-D60C-A27B-36FA4F69397D}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Register.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Play_tutorial.cs">
     <Files>
       <File FileName="Assets/Statistics.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Register.cs" Line="17" Column="23" />
+      <File FileName="Assets/Scripts/Register.cs" />
+      <File FileName="Assets/Notification.cs" />
+      <File FileName="Assets/star_script.cs" Line="53" Column="38" />
+      <File FileName="Assets/Play_tutorial.cs" Line="16" Column="9" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="ad55ecc9-5cf6-4883-9a66-8df1defbd5ca" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="4d7c117f-2714-4adf-b7b7-e04dd5067411" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
