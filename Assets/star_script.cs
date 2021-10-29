@@ -24,20 +24,63 @@ public class star_script : MonoBehaviour
         send_button.GetComponent<Button>().interactable = false;
         if (star1.GetComponent<Toggle>().isOn == true)
         {
-            send_button.GetComponent<Button>().interactable = true;
+            star1.GetComponent<Toggle>().interactable = false;
             star2.GetComponent<Toggle>().interactable = true;
+            send_button.GetComponent<Button>().interactable = true;
+            if (star2.GetComponent<Toggle>().isOn == false)
+            {
+                star1.GetComponent<Toggle>().interactable = true;
+            }
+               
         }
         if(star2.GetComponent<Toggle>().isOn == true)
         {
+            star2.GetComponent<Toggle>().interactable = false;
             star3.GetComponent<Toggle>().interactable = true;
+            if (star3.GetComponent<Toggle>().isOn == false)
+            {
+                star2.GetComponent<Toggle>().interactable = true;
+            }
         }
         if (star3.GetComponent<Toggle>().isOn == true)
         {
+            star3.GetComponent<Toggle>().interactable = false;
             star4.GetComponent<Toggle>().interactable = true;
+            if (star4.GetComponent<Toggle>().isOn == false)
+            {
+                star3.GetComponent<Toggle>().interactable = true;
+            }
         }
         if (star4.GetComponent<Toggle>().isOn == true)
         {
+            star4.GetComponent<Toggle>().interactable = false;
             star5.GetComponent<Toggle>().interactable = true;
+            if (star5.GetComponent<Toggle>().isOn == false)
+            {
+                star4.GetComponent<Toggle>().interactable = true;
+            }
+        }
+
+        if (star1.GetComponent<Toggle>().isOn == false)
+        {
+            star1.GetComponent<Toggle>().interactable = true;
+            send_button.GetComponent<Button>().interactable = false;
+            star2.GetComponent<Toggle>().interactable = false;
+        }
+        if (star2.GetComponent<Toggle>().isOn == false)
+        {
+            star2.GetComponent<Toggle>().interactable = true;
+            star3.GetComponent<Toggle>().interactable = false;
+        }
+        if (star3.GetComponent<Toggle>().isOn == false)
+        {
+            star3.GetComponent<Toggle>().interactable = true;
+            star4.GetComponent<Toggle>().interactable = false;
+        }
+        if (star4.GetComponent<Toggle>().isOn == false)
+        {
+            star4.GetComponent<Toggle>().interactable = true;
+            star5.GetComponent<Toggle>().interactable = false;
         }
     }
 
