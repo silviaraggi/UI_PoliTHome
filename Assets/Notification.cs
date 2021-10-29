@@ -44,14 +44,21 @@ public class Notification : MonoBehaviour
         {
             
             Username = username.GetComponent<InputField>().text;
-            Lines = System.IO.File.ReadAllLines(@"Assets/TextFile/" + Username + ".txt");
+            string file = Application.dataPath;
+            string[] pathArray = file.Split('/');
+            file = "";
+            for (int i = 0; i < pathArray.Length - 1; i++)
+            {
+                file += pathArray[i] + "/";
+            }
+            Lines = System.IO.File.ReadAllLines(file + Username + ".txt");
             Name = Lines[0];
             Surname = Lines[1];
 
             
-            if(!Directory.Exists("Assets/TextFile/"+ Name + " " + Surname))
+            if(!Directory.Exists(file + Name + " " + Surname))
             {
-                old = File.GetCreationTime(@"Assets/TextFile/" + Username + ".txt");               
+                old = File.GetCreationTime(file + Username + ".txt");               
                 if ((now-old).Days >= 7)
                 {
                     type_notifica = 2;
@@ -61,7 +68,7 @@ public class Notification : MonoBehaviour
                 //Debug.Log(type_notifica);
             } else
             {
-                foreach (string files in Directory.GetFiles("Assets/TextFile/" + Name + " " + Surname))
+                foreach (string files in Directory.GetFiles(file + Name + " " + Surname))
                 {
                     if (File.GetCreationTime(files) > old)
                         old = File.GetCreationTime(files);

@@ -39,15 +39,22 @@ public class Login : MonoBehaviour
     {
         bool UN = false;
         bool PW = false;
-        
+        string file = Application.dataPath;
+        string[] pathArray = file.Split('/');
+        file = "";
+        for (int i = 0; i < pathArray.Length - 1; i++)
+        {
+            file += pathArray[i] + "/";
+        }
+
 
         if (Username!= "")
         {
-            if (System.IO.File.Exists(@"Assets/TextFile/"+Username+".txt"))
+            if (System.IO.File.Exists(file + Username+".txt"))
             {
                 print("entro");
                 UN = true;
-                Lines = System.IO.File.ReadAllLines(@"Assets/TextFile/" + Username + ".txt");
+                Lines = System.IO.File.ReadAllLines(file + Username + ".txt");
             }
             else
             {
@@ -61,7 +68,7 @@ public class Login : MonoBehaviour
         }
         if (Password != "")
         {
-            if (System.IO.File.Exists(@"Assets/TextFile/"+Username+".txt"))
+            if (System.IO.File.Exists(file + Username+".txt"))
             {
 
                 int i = 1;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
@@ -169,12 +170,19 @@ public class Survey_script : MonoBehaviour
 
         if (C == true && D == true && PD == true && L == true && P == true && LA == true && R == true && S == true && SPRT == true && LVR == true)
         {
+            string file = Application.dataPath;
+            string[] pathArray = file.Split('/');
+            file = "";
+            for (int i = 0; i < pathArray.Length - 1; i++)
+            {
+                file += pathArray[i] + "/";
+            }
             form = (Cappotto + Environment.NewLine + Dormire + Environment.NewLine + Porta_dietro + Environment.NewLine + Lavarsi + Environment.NewLine + Pettinarsi + Environment.NewLine + Lanciare + Environment.NewLine + Raggiungere_scaffale + Environment.NewLine + Sollevare + Environment.NewLine +Sport + Environment.NewLine + Lavorare + Environment.NewLine + Date);
-            Lines = System.IO.File.ReadAllLines(@"Assets/TextFile/" + Username + ".txt");
+            Lines = System.IO.File.ReadAllLines(file + Username + ".txt");
             Name = Lines[0];
             Surname = Lines[1];
-            string guid = AssetDatabase.CreateFolder("Assets/TextFile", Name + " " + Surname);
-            System.IO.File.WriteAllText(@"Assets/TextFile/"+Name+" "+Surname+"/" + Date + ".txt", form);
+            Directory.CreateDirectory(file+ Name + " " + Surname);
+            System.IO.File.WriteAllText(file+Name+" "+Surname+"/" + Date + ".txt", form);
         }
 
         cappotto.GetComponent<InputField>().text = "";

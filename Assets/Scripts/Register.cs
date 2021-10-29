@@ -45,6 +45,13 @@ public class Register : MonoBehaviour
     }
     public void RegisterButton()
     {
+        string file = Application.dataPath;
+        string[] pathArray = file.Split('/');
+        file = "";
+        for (int i = 0; i < pathArray.Length - 1; i++)
+        {
+            file += pathArray[i] + "/";
+        }
         bool UN = false;
         bool EM = false;
         bool PW = false;
@@ -81,7 +88,7 @@ public class Register : MonoBehaviour
         }
         if (Username != "")
         {
-            if (!System.IO.File.Exists(@"\$PATH:/Assets/TextFile/" + Username + ".txt"))
+            if (!System.IO.File.Exists(file + Username + ".txt"))
             {
                 UN = true;
             }
@@ -209,7 +216,7 @@ public class Register : MonoBehaviour
                     Password += Encrypted.ToString();
                 }
                 form = (Name + Environment.NewLine + Surname + Environment.NewLine + Username + Environment.NewLine+ Email +Environment.NewLine + Doc_name + Environment.NewLine + Doc_email + Environment.NewLine+ Password);
-                System.IO.File.WriteAllText(@"Assets/TextFile/" + Username + ".txt", form);
+                System.IO.File.WriteAllText(file + Username + ".txt", form);
                 username.GetComponent<InputField>().text = "";
                 email.GetComponent<InputField>().text = "";
                 password.GetComponent<InputField>().text = "";

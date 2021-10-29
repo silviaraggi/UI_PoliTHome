@@ -36,14 +36,21 @@ public class Slider_script : MonoBehaviour
         value_ache = sliderUI.value;
         string Date = DateTime.Now.ToString("yyyy-MM-dd-HH-mm");
         Username = username.GetComponent<InputField>().text;
-        Lines = System.IO.File.ReadAllLines(@"Assets/TextFile/" + Username + ".txt");
+        string file = Application.dataPath;
+        string[] pathArray = file.Split('/');
+        file = "";
+        for (int i = 0; i < pathArray.Length - 1; i++)
+        {
+            file += pathArray[i] + "/";
+        }
+        Lines = System.IO.File.ReadAllLines(file + Username + ".txt");
         Name = Lines[0];
         Surname = Lines[1];
-        if (!Directory.Exists("Assets/TextFile/" + Name + " " + Surname + " ValutationAche"))
+        if (!Directory.Exists(file + Name + " " + Surname + " ValutationAche"))
         {
-            string guid = AssetDatabase.CreateFolder("Assets/TextFile", Name + " " + Surname + " ValutationAche");
+            Directory.CreateDirectory(file+ Name + " " + Surname + " ValutationAche");
         }
-        System.IO.File.WriteAllText(@"Assets/TextFile/" + Name + " " + Surname + " ValutationAche/" + Date + ".txt", value_ache.ToString());
+        System.IO.File.WriteAllText(file + Name + " " + Surname + " ValutationAche/" + Date + ".txt", value_ache.ToString());
     }
 
     

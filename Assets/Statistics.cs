@@ -76,71 +76,78 @@ public class Statistics : MonoBehaviour
         survey2 = 0;
         survey3 = 0;
         survey4 = 0;
+        string file = Application.dataPath;
+        string[] pathArray = file.Split('/');
+        file = "";
+        for (int i = 0; i < pathArray.Length - 1; i++)
+        {
+            file += pathArray[i] + "/";
+        }
         if (login.access is true)
         {
             Username = username.GetComponent<InputField>().text;
-            Lines = System.IO.File.ReadAllLines(@"Assets/TextFile/" + Username + ".txt");
+            Lines = System.IO.File.ReadAllLines(file + Username + ".txt");
             Name = Lines[0];
             Surname = Lines[1];
 
-            if (Directory.Exists("Assets/TextFile/" + Name + " " + Surname))
+            if (Directory.Exists(file + Name + " " + Surname))
             {
-                DirectoryInfo d = new DirectoryInfo("Assets/TextFile/" + Name + " " + Surname);
+                DirectoryInfo d = new DirectoryInfo(file + Name + " " + Surname);
                 FileInfo[] Files = d.GetFiles("*.txt");
                 for (int i = 0; i < Files.Length; i++)
                 {
-                    if(File.GetCreationTime("Assets/TextFile/" + Name + " " + Surname + "/" + Files[i].Name) > data1){
+                    if(File.GetCreationTime(file + Name + " " + Surname + "/" + Files[i].Name) > data1){
                         data4 = data3;
                         data3 = data2;
                         data2 = data1;
-                        data1 = File.GetCreationTime("Assets/TextFile/" + Name + " " + Surname + "/" + Files[i].Name);
+                        data1 = File.GetCreationTime(file + Name + " " + Surname + "/" + Files[i].Name);
                         file4 = file3;
                         file3 = file2;
                         file2 = file1;
-                        file1 = "Assets/TextFile/" + Name + " " + Surname + "/" + Files[i].Name;
+                        file1 = file + Name + " " + Surname + "/" + Files[i].Name;
                     }
-                    else if (File.GetCreationTime("Assets/TextFile/" + Name + " " + Surname + "/" + Files[i].Name) > data2)
+                    else if (File.GetCreationTime(file + Name + " " + Surname + "/" + Files[i].Name) > data2)
                     {
                         data4 = data3;
                         data3 = data2;
-                        data2 =  File.GetCreationTime("Assets/TextFile/" + Name + " " + Surname + "/" + Files[i].Name);
+                        data2 =  File.GetCreationTime(file + Name + " " + Surname + "/" + Files[i].Name);
                         file4 = file3;
                         file3 = file2;
-                        file2 =  "Assets/TextFile/" + Name + " " + Surname + "/" + Files[i].Name;
+                        file2 = file + Name + " " + Surname + "/" + Files[i].Name;
                     }
-                    else if (File.GetCreationTime("Assets/TextFile/" + Name + " " + Surname + "/" + Files[i].Name) > data3)
+                    else if (File.GetCreationTime(file + Name + " " + Surname + "/" + Files[i].Name) > data3)
                     {
                         data4 = data3;
-                        data3 =  File.GetCreationTime("Assets/TextFile/" + Name + " " + Surname + "/" + Files[i].Name);
+                        data3 =  File.GetCreationTime(file + Name + " " + Surname + "/" + Files[i].Name);
                         file4 = file3;
-                        file3 =  "Assets/TextFile/" + Name + " " + Surname + "/" + Files[i].Name;
+                        file3 = file + Name + " " + Surname + "/" + Files[i].Name;
                     }
-                    else if (File.GetCreationTime("Assets/TextFile/" + Name + " " + Surname + "/" + Files[i].Name) > data4)
+                    else if (File.GetCreationTime(file + Name + " " + Surname + "/" + Files[i].Name) > data4)
                     {
-                        data4 =  File.GetCreationTime("Assets/TextFile/" + Name + " " + Surname + "/" + Files[i].Name);
-                        file4 =  "Assets/TextFile/" + Name + " " + Surname + "/" + Files[i].Name;
+                        data4 =  File.GetCreationTime(file + Name + " " + Surname + "/" + Files[i].Name);
+                        file4 = file + Name + " " + Surname + "/" + Files[i].Name;
                     }
                 }
-                DirectoryInfo dAche = new DirectoryInfo("Assets/TextFile/" + Name + " " + Surname+" ValutationAche");
+                DirectoryInfo dAche = new DirectoryInfo(file + Name + " " + Surname+" ValutationAche");
                 FileInfo[] FilesAche = dAche.GetFiles("*.txt");
                 for (int i = 0; i < FilesAche.Length; i++)
                 {
-                    LinesAche = System.IO.File.ReadAllLines("Assets/TextFile/" + Name + " " + Surname + " ValutationAche/" + FilesAche[i].Name);
-                    if (File.GetCreationTime("Assets/TextFile/" + Name + " " + Surname + " ValutationAche/" + FilesAche[i].Name) >= data4.AddDays(-7) && File.GetCreationTime("Assets/TextFile/" + Name + " " + Surname + " ValutationAche/" + FilesAche[i].Name) < data4)
+                    LinesAche = System.IO.File.ReadAllLines(file + Name + " " + Surname + " ValutationAche/" + FilesAche[i].Name);
+                    if (File.GetCreationTime(file + Name + " " + Surname + " ValutationAche/" + FilesAche[i].Name) >= data4.AddDays(-7) && File.GetCreationTime("Assets/TextFile/" + Name + " " + Surname + " ValutationAche/" + FilesAche[i].Name) < data4)
                     {
                         ache4 = ache4 + float.Parse(LinesAche[0]);
                         cont4 = cont4 + 1;
-                    }else if (File.GetCreationTime("Assets/TextFile/" + Name + " " + Surname + " ValutationAche/" + FilesAche[i].Name) >= data4 && File.GetCreationTime("Assets/TextFile/" + Name + " " + Surname + " ValutationAche/" + FilesAche[i].Name) < data3)
+                    }else if (File.GetCreationTime(file + Name + " " + Surname + " ValutationAche/" + FilesAche[i].Name) >= data4 && File.GetCreationTime("Assets/TextFile/" + Name + " " + Surname + " ValutationAche/" + FilesAche[i].Name) < data3)
                     {
                         ache3 = ache3 + float.Parse(LinesAche[0]);
                         cont3 = cont3 + 1;
                     }
-                    else if (File.GetCreationTime("Assets/TextFile/" + Name + " " + Surname + " ValutationAche/" + FilesAche[i].Name) >= data3 && File.GetCreationTime("Assets/TextFile/" + Name + " " + Surname + " ValutationAche/" + FilesAche[i].Name) < data2)
+                    else if (File.GetCreationTime(file + Name + " " + Surname + " ValutationAche/" + FilesAche[i].Name) >= data3 && File.GetCreationTime("Assets/TextFile/" + Name + " " + Surname + " ValutationAche/" + FilesAche[i].Name) < data2)
                     {
                         ache2 = ache2 + float.Parse(LinesAche[0]);
                         cont2 = cont2 + 1;
                     }
-                    else if (File.GetCreationTime("Assets/TextFile/" + Name + " " + Surname + " ValutationAche/" + FilesAche[i].Name) >= data2 && File.GetCreationTime("Assets/TextFile/" + Name + " " + Surname + " ValutationAche/" + FilesAche[i].Name) < data1)
+                    else if (File.GetCreationTime(file + Name + " " + Surname + " ValutationAche/" + FilesAche[i].Name) >= data2 && File.GetCreationTime("Assets/TextFile/" + Name + " " + Surname + " ValutationAche/" + FilesAche[i].Name) < data1)
                     {
                         ache1 = ache1 + float.Parse(LinesAche[0]);
                         cont1 = cont1 + 1;
