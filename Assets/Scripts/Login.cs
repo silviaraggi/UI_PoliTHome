@@ -28,6 +28,9 @@ public class Login : MonoBehaviour
     public bool access=false;
     public Notification notification;
 
+    public GameObject error_password;
+    public GameObject error_username;
+
     public GameObject miss;
     public GameObject displayName;
     public GameObject displayNameDoc;
@@ -52,13 +55,15 @@ public class Login : MonoBehaviour
         {
             if (System.IO.File.Exists(file + Username+".txt"))
             {
-                print("entro");
+                
                 UN = true;
+                
                 Lines = System.IO.File.ReadAllLines(file + Username + ".txt");
+                error_username.SetActive(false);
             }
             else
             {
-                
+                error_username.SetActive(true);
                 Debug.LogWarning("Username is INVALID");
             }
         }
@@ -81,15 +86,20 @@ public class Login : MonoBehaviour
                 }
                 if (Password == DecryptedPass)
                 {
+                    error_password.SetActive(false);
+
                     PW = true;
                 }
                 else
                 {
+                    error_password.SetActive(true);
+
                     Debug.LogWarning("Password Is Invalid");
                 }
             }
             else
             {
+
                 Debug.LogWarning("Password Is Invalid");
             }
 

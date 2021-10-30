@@ -19,6 +19,7 @@ public class Notification : MonoBehaviour
     public GameObject panel;
     public GameObject username;
     public Login login;
+    public GameObject button_notifica;
 
     public Animator notifica_verde;
     public Animator notifica_blue;
@@ -61,6 +62,7 @@ public class Notification : MonoBehaviour
                 old = File.GetCreationTime(file + Username + ".txt");               
                 if ((now-old).Days >= 7)
                 {
+                    button_notifica.GetComponent<Button>().interactable = true;
                     type_notifica = 2;
                     panel.SetActive(false);
                     week = true;
@@ -76,6 +78,7 @@ public class Notification : MonoBehaviour
                 //Debug.Log(old);
                 if ((now - old).Days >= 7)
                 {
+                    button_notifica.GetComponent<Button>().interactable = true;
                     type_notifica = 2;
                     panel.SetActive(false);
                     week = true;
@@ -132,26 +135,29 @@ public class Notification : MonoBehaviour
         if (type_notifica == 1)
         {
             notifica_verde.SetBool("isOpen", false);
-            Thread.Sleep(3000);
+            
 
             green_notifica.SetActive(false);
             green_cloud.SetActive(false);
             type_notifica = 0;
+            button_notifica.GetComponent<Button>().interactable = false;
 
         }
         else if(type_notifica == 2)
         {
             notifica_blue.SetBool("isOpen", false);
-            Thread.Sleep(3000);
+           
             green_notifica.SetActive(false);
             blue_cloud.SetActive(false);
             type_notifica = 0;
             week = false;
+            button_notifica.GetComponent<Button>().interactable = false;
+
         }
 
 
-        
-        
+
+
     }
 
     
