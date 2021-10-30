@@ -6,6 +6,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Timers;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 
 public class Doctor : MonoBehaviour
 {
@@ -13,6 +17,7 @@ public class Doctor : MonoBehaviour
     public GameObject name_doctor;
     public Dropdown patient;
     public GameObject questionario;
+    public GameObject email;
 
     private string Name_doctor;
     private string Patient;
@@ -34,6 +39,25 @@ public class Doctor : MonoBehaviour
     public Text text8;
     public Text text9;
     public Text text10;
+
+    public InputField bodyMessage;
+
+
+   
+
+    public GameObject Doc;
+    public GameObject EmailBox;
+
+
+    public GameObject success;
+
+    private bool success_bool = false;
+
+  
+
+
+    private string MyEmail;
+    private string DocEmail;
 
     private List<string> my_dropOption = new List<string> { };
 
@@ -57,6 +81,15 @@ public class Doctor : MonoBehaviour
         {
             panel_empty.SetActive(true);
             Debug.LogWarning("Name is Empty");
+        }
+
+        if (success_bool is true && Input.GetKeyDown(KeyCode.Return))
+        {
+            Doc.SetActive(true);
+            EmailBox.SetActive(false);
+            success_bool = false;
+            success.SetActive(false);
+
         }
 
 
@@ -98,7 +131,8 @@ public class Doctor : MonoBehaviour
         
        patient.ClearOptions();
        patient.AddOptions(my_dropOption);
-        questionario.SetActive(true);
+       questionario.SetActive(true);
+        email.SetActive(true);
 
     }
 
@@ -149,5 +183,76 @@ public class Doctor : MonoBehaviour
             .Union(directory.GetDirectories().Select(d => GetNewestFile(d)))
             .OrderByDescending(f => (f == null ? DateTime.MinValue : f.LastWriteTime))
             .FirstOrDefault();
+    }
+
+    public void Send_email()
+    {
+        Nome_cartella = patient.options[patient.value].text;
+        int space = Nome_cartella.IndexOf(" ");
+        string name = Nome_cartella.Substring(0, space);
+        print("Print name email "+name);
+        string surname = Nome_cartella.Substring(space+1);
+        print("Print surname email " + surname);
+
+        string file = Application.dataPath;
+        string[] pathArray = file.Split('/');
+        file = "";
+        for (int i = 0; i < pathArray.Length - 1; i++)
+        {
+            file += pathArray[i] + "/";
+        }
+
+        print(file);
+
+        DirectoryInfo d = new DirectoryInfo(file);
+
+        FileInfo[] Files = d.GetFiles("*.txt");
+        print(Files.Length);
+        for (int i = 0; i < Files.Length; i++)
+        {
+
+            Lines = System.IO.File.ReadAllLines(Files[i].Name);
+            if (name == Lines[0]&& surname==Lines[1])
+            {
+
+                MyEmail = Lines[3];
+                DocEmail = Lines[5];     
+            }
+            else
+            {
+                Debug.LogWarning("No match");
+            }
+        }
+
+
+
+        MailMessage mail = new MailMessage();
+        SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+        SmtpServer.Timeout = 10000;
+        SmtpServer.DeliveryMethod = SmtpDeliveryMethod.Network;
+        SmtpServer.UseDefaultCredentials = false;
+        SmtpServer.Port = 587;
+
+        mail.From = new MailAddress(DocEmail);
+        mail.To.Add(new MailAddress(MyEmail));
+
+        mail.Subject = "Test";
+        mail.Body = bodyMessage.text;
+
+
+        SmtpServer.Credentials = new System.Net.NetworkCredential(DocEmail, "MyPassword") as ICredentialsByHost; SmtpServer.EnableSsl = true;
+        ServicePointManager.ServerCertificateValidationCallback = delegate (object s, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
+        {
+            return true;
+        };
+
+        mail.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
+        SmtpServer.Send(mail);
+
+        success.SetActive(true);
+        success_bool = true;
+        bodyMessage.Select();
+        bodyMessage.text = "";
+
     }
 }

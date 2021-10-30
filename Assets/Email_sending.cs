@@ -33,9 +33,17 @@ public class Email_sending : MonoBehaviour
 
         public void SendEmail()
         {
-            
+            Username = username.GetComponent<InputField>().text;
+            string file = Application.dataPath;
+            string[] pathArray = file.Split('/');
+            file = "";
+            for (int i = 0; i < pathArray.Length - 1; i++)
+            {
+                file += pathArray[i] + "/";
+            }
+            Lines = System.IO.File.ReadAllLines(file + Username + ".txt");
 
-            Lines = System.IO.File.ReadAllLines(@"Assets/TextFile/silviraggi.txt");
+            /*Lines = System.IO.File.ReadAllLines(@"Assets/TextFile/silviraggi.txt");*/
             MyEmail = Lines[3];
             DocEmail = Lines[5];
             MailMessage mail = new MailMessage();
@@ -52,7 +60,7 @@ public class Email_sending : MonoBehaviour
             mail.Body = bodyMessage.text;
 
 
-            SmtpServer.Credentials = new System.Net.NetworkCredential(MyEmail, "chr17m2007!kh24!") as ICredentialsByHost; SmtpServer.EnableSsl = true;
+            SmtpServer.Credentials = new System.Net.NetworkCredential(MyEmail, "MyPassword") as ICredentialsByHost; SmtpServer.EnableSsl = true;
             ServicePointManager.ServerCertificateValidationCallback = delegate (object s, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
             {
                 return true;

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Timers;
 using UnityEngine.UI;
-using System.Threading;
 using UnityEngine;
 using System.IO;
 
