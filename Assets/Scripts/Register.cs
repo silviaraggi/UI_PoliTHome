@@ -15,6 +15,13 @@ public class Register : MonoBehaviour
     public GameObject Register_canvas;
     public GameObject Login_canvas;
     public Dropdown genere;
+    public GameObject panelPassword;
+    public GameObject panelConf;
+    public GameObject panelEmail;
+    public GameObject panelEmailDoc;
+    public GameObject miss;
+
+
 
     public GameObject name;
     public GameObject surname;
@@ -68,6 +75,7 @@ public class Register : MonoBehaviour
         }
         else
         {
+
             Debug.LogWarning("Name Empty");
         }
         if (Surname != "")
@@ -76,6 +84,7 @@ public class Register : MonoBehaviour
         }
         else
         {
+
             Debug.LogWarning("Surname Empty");
         }
         if (Doc_name != "")
@@ -84,12 +93,14 @@ public class Register : MonoBehaviour
         }
         else
         {
+
             Debug.LogWarning("Name Empty");
         }
         if (Username != "")
         {
             if (!System.IO.File.Exists(file + Username + ".txt"))
             {
+
                 UN = true;
             }
             else
@@ -99,38 +110,52 @@ public class Register : MonoBehaviour
         }
         else
         {
+            
+   
             Debug.LogWarning("Username field Empty");
         }
         if (Email != "")
         {
             EmailValidation();
-            {
+            
                 if (EmailValid)
                 {
+                   
                     if (Email.Contains("@"))
                     {
                         if (Email.Contains("."))
                         {
-                            EM = true;
-                        }
-                        else
+                 
+                        EM = true;
+                            panelEmail.SetActive(false);
+
+                    }
+                    else
                         {
+                  
+                        panelEmail.SetActive(true);
                             Debug.LogWarning("Email is Incorrect");
                         }
                     }
                     else
                     {
+              
+                    panelEmail.SetActive(true);
                         Debug.LogWarning("Email is Incorrect");
                     }
+                    
+
                 }
                 else
                 {
-                    Debug.LogWarning("Email is Incorrect");
+                
+                Debug.LogWarning("Email is Incorrect");
                 }
-            }
+
         }
         else
         {
+     
             Debug.LogWarning("Email Field Empty");
         }
         if (Doc_email != "")
@@ -143,17 +168,24 @@ public class Register : MonoBehaviour
                     {
                         if (Email.Contains("."))
                         {
+                          
+                            panelEmailDoc.SetActive(false);
                             DCEM = true;
                         }
                         else
                         {
+                           
+                            panelEmailDoc.SetActive(true);
                             Debug.LogWarning("Email is Incorrect");
                         }
                     }
                     else
                     {
+                  
+                        panelEmailDoc.SetActive(true);
                         Debug.LogWarning("Email is Incorrect");
                     }
+
                 }
                 else
                 {
@@ -163,32 +195,47 @@ public class Register : MonoBehaviour
         }
         else
         {
+     
             Debug.LogWarning("Email Field Empty");
         }
 
         if (Password != "")
             {
+                if (Password.Length <= 5)
+                {
+     
+                panelPassword.SetActive(true);
+                } 
+
                 if (Password.Length > 5)
                 {
+          
+                panelPassword.SetActive(false);
+
                     PW = true;
                 }
                 else
                 {
+                    
                     Debug.LogWarning("Password Must Be atleast 6 Character long");
                 }
             }
             else
             {
+          
                 Debug.LogWarning("Password Field Empty");
             }
             if (ConfPassword != "")
             {
                 if (ConfPassword == Password)
                 {
+             
+                panelConf.SetActive(false);
                     CPW = true;
                 }
                 else
                 {
+                    panelConf.SetActive(true);
                     Debug.LogWarning("Passwords Don't Match");
                 }
             }
@@ -202,6 +249,7 @@ public class Register : MonoBehaviour
 
             if (UN == true && EM == true && PW == true && CPW == true && DC==true && DCEM==true && NM==true && SN==true)
             {
+                miss.SetActive(false);
                 bool Clear = true;
                 int i = 1;
                 foreach (char c in Password)
@@ -287,10 +335,14 @@ public class Register : MonoBehaviour
             
             if (Password != " " && Email != "" && Password != "" && ConfPassword != "" && Name !="" && Surname!="" && Doc_name!="" && Doc_email!="")
             {
-
-                register_button.GetComponent<Button>().interactable = true;
+            miss.SetActive(false);
+            register_button.GetComponent<Button>().interactable = true;
 
             }
+        else
+        {
+            miss.SetActive(true);
+        }
             
 
             Username = username.GetComponent<InputField>().text;

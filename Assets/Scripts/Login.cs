@@ -27,8 +27,8 @@ public class Login : MonoBehaviour
     private string DecryptedPass;
     public bool access=false;
     public Notification notification;
-    
 
+    public GameObject miss;
     public GameObject displayName;
     public GameObject displayNameDoc;
     
@@ -68,6 +68,7 @@ public class Login : MonoBehaviour
         }
         if (Password != "")
         {
+
             if (System.IO.File.Exists(file + Username+".txt"))
             {
 
@@ -136,11 +137,12 @@ public class Login : MonoBehaviour
         
         if (Username!= "" && Password != "" )
         {
-
+            miss.SetActive(false);
             login.GetComponent<Button>().interactable = true;
         }
         else
         {
+            miss.SetActive(true);
             login.GetComponent<Button>().interactable = false;
         }
 

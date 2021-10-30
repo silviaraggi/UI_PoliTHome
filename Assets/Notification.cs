@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Timers;
 using UnityEngine.UI;
-
+using System.Threading;
 using UnityEngine;
 using System.IO;
 
@@ -132,16 +132,19 @@ public class Notification : MonoBehaviour
         if (type_notifica == 1)
         {
             notifica_verde.SetBool("isOpen", false);
+            Thread.Sleep(3000);
+
             green_notifica.SetActive(false);
-            /*green_cloud.SetActive(false);*/
+            green_cloud.SetActive(false);
             type_notifica = 0;
 
         }
         else if(type_notifica == 2)
         {
             notifica_blue.SetBool("isOpen", false);
+            Thread.Sleep(3000);
             green_notifica.SetActive(false);
-            /*blue_cloud.SetActive(false);*/
+            blue_cloud.SetActive(false);
             type_notifica = 0;
             week = false;
         }
