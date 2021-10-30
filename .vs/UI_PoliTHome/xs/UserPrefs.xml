@@ -1,13 +1,18 @@
 ﻿<Properties StartupConfiguration="{561F7ECE-EC08-D60C-A27B-36FA4F69397D}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Register.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Slider_script.cs">
     <Files>
       <File FileName="Assets/Statistics.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Register.cs" Line="171" Column="18" />
-      <File FileName="Assets/Notification.cs" />
-      <File FileName="Assets/star_script.cs" />
-      <File FileName="Assets/Play_tutorial.cs" />
-      <File FileName="Assets/Scripts/MainMenuScript.cs" />
-      <File FileName="Assets/Scripts/Login.cs" />
+      <File FileName="Assets/Scripts/Register.cs" Line="101" Column="40" />
+      <File FileName="Assets/Notification.cs" Line="54" Column="56" />
+      <File FileName="Assets/star_script.cs" Line="60" Column="22" />
+      <File FileName="Assets/Play_tutorial.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/MainMenuScript.cs" Line="14" Column="1" />
+      <File FileName="Assets/Scripts/Login.cs" Line="61" Column="79" />
+      <File FileName="Assets/Doctor.cs" Line="121" Column="10" />
+      <File FileName="Assets/Survey_script.cs" Line="9" Column="21" />
+      <File FileName="../../../../Applications/Unity/Hub/Editor/2019.4.12f1/Unity.app/Contents/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/UI/Core/Button.cs" Line="68" Column="1" />
+      <File FileName="Assets/Scripts/Settings.cs" Line="9" Column="22" />
+      <File FileName="Assets/Slider_script.cs" Line="29" Column="24" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
